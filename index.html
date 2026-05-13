@@ -196,6 +196,85 @@
 
   .item-name { font-weight: 400; color: var(--ink); }
 
+  /* 價格組合卡片 */
+  .price-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .price-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .price-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent-light);
+    opacity: 0.5;
+  }
+
+  .price-card.featured {
+    border-color: var(--accent);
+  }
+
+  .price-card.featured::after {
+    background: var(--accent);
+    opacity: 1;
+  }
+
+  .price-card-tag {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .price-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .price-card-amount {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .price-card-amount .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .price-card-amount .nt {
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .price-card-desc {
+    font-size: 12px;
+    color: var(--ink-light);
+    line-height: 1.7;
+  }
+
   .info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -219,24 +298,6 @@
 
   .info-cell-value { font-size: 14px; line-height: 1.9; color: var(--ink-light); }
   .info-cell-value strong { font-weight: 400; color: var(--ink); }
-
-  .price-badge {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 4px;
-    background: var(--ink);
-    color: var(--cream);
-    padding: 8px 20px;
-    margin-top: 12px;
-  }
-
-  .price-badge .amount {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-style: italic;
-  }
-
-  .price-badge .unit { font-size: 12px; letter-spacing: 0.2em; }
 
   .notes-list {
     list-style: none;
@@ -266,7 +327,6 @@
     line-height: 1.4;
   }
 
-  /* Form section */
   .form-wrapper {
     background: var(--warm-white);
     border: 1px solid var(--border);
@@ -323,7 +383,7 @@
   }
 
   @media (max-width: 600px) {
-    .info-grid { grid-template-columns: 1fr; }
+    .info-grid, .price-grid { grid-template-columns: 1fr; }
     .product-card, .form-wrapper { padding: 32px 24px; }
   }
 </style>
@@ -359,7 +419,30 @@
     </ul>
   </div>
 
-  <p class="section-label">預購資訊</p>
+  <p class="section-label">早鳥預購組合</p>
+
+  <div class="price-grid">
+    <div class="price-card">
+      <span class="price-card-tag">單人珍藏組</span>
+      <span class="price-card-name">獨自書寫<br>也是一種溫柔</span>
+      <div class="price-card-amount">
+        <span class="nt">NT$</span>
+        <span class="num">299</span>
+      </div>
+      <p class="price-card-desc">與你友情久久 🤍<br>一套 Pages of Us 手帳組</p>
+    </div>
+    <div class="price-card featured">
+      <span class="price-card-tag">雙人共寫組</span>
+      <span class="price-card-name">和你一起<br>翻開這一頁</span>
+      <div class="price-card-amount">
+        <span class="nt">NT$</span>
+        <span class="num">500</span>
+      </div>
+      <p class="price-card-desc">和你一起 🤍<br>兩套 Pages of Us 手帳組</p>
+    </div>
+  </div>
+
+  <p class="section-label" style="margin-top: 48px;">預購資訊</p>
 
   <div class="info-grid">
     <div class="info-cell">
@@ -367,16 +450,11 @@
       <p class="info-cell-value"><strong>即日起至 6 月 2 日</strong>止</p>
     </div>
     <div class="info-cell">
-      <p class="info-cell-label">早鳥優惠價</p>
-      <div class="price-badge"><span class="amount">299</span><span class="unit">元</span></div>
-      <p class="info-cell-value" style="margin-top:10px; font-size:12px;">與你友情久久 🤍</p>
-    </div>
-    <div class="info-cell" style="grid-column: 1 / -1;">
-      <p class="info-cell-label">取貨地點</p>
+      <p class="info-cell-label">取貨方式</p>
       <p class="info-cell-value">
         <strong>松菸畢製現場領貨</strong><br>
-        📍 松山文創園區 北向製菸工廠<br>
-        <a href="https://maps.app.goo.gl/toBDhswVEbK9oRpC9" target="_blank" style="color: var(--accent); font-size:12px;">→ 查看交通資訊</a>
+        📍 松山文創園區<br>北向製菸工廠<br>
+        <a href="https://maps.app.goo.gl/toBDhswVEbK9oRpC9" target="_blank" style="color: var(--accent); font-size:12px;">→ 交通資訊</a>
       </p>
     </div>
   </div>
@@ -385,7 +463,7 @@
   <ul class="notes-list">
     <li><span class="note-num">1</span><span>請確認填寫正確的收件資訊，確保回憶能準確送達。</span></li>
     <li><span class="note-num">2</span><span>匯款完成後，請於表單內填寫帳號末五碼以利對帳。</span></li>
-    <li><span class="note-num">3</span><span>任何問題歡迎私訊 <strong>「和你和你 (HandinHand)」</strong> 官方帳號。</span></li>
+    <li><span class="note-num">3</span><span>任何問題歡迎私訊 <a href="https://www.instagram.com/hand_in_hand.ni?igsh=bmVnZXF4djQxeW4x" target="_blank" style="color: var(--accent); text-decoration: none;"><strong>「和你和你 (HandinHand)」</strong></a> 官方帳號。</span></li>
   </ul>
 
   <div class="form-wrapper">
@@ -394,7 +472,7 @@
     <div class="gform-wrap">
       <iframe
         src="https://docs.google.com/forms/d/e/1FAIpQLSfTDQn5NUPP2Jo6wAZzlKQs9lQxc25Dv-HdTw5a0t8sRPOT2w/viewform?embedded=true"
-        height="1600"
+        height="1700"
         frameborder="0"
         marginheight="0"
         marginwidth="0">載入中…</iframe>
