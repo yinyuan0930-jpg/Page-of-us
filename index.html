@@ -14,7 +14,6 @@
     --accent: #8B6F47;
     --accent-light: #C4A882;
     --blush: #E8D5C0;
-    --sage: #9CAF8A;
     --border: #D4C4A8;
   }
 
@@ -38,7 +37,6 @@
     z-index: 1000;
   }
 
-  /* Hero */
   .hero {
     position: relative;
     min-height: 100vh;
@@ -68,15 +66,12 @@
     opacity: 0.15;
     font-size: clamp(80px, 15vw, 180px);
     user-select: none;
-    letter-spacing: -0.05em;
     line-height: 1;
   }
   .hero-ornament.left { left: -2vw; top: 10%; }
   .hero-ornament.right { right: -2vw; bottom: 10%; }
 
   .label {
-    font-family: 'Noto Serif TC', serif;
-    font-weight: 200;
     font-size: 11px;
     letter-spacing: 0.4em;
     text-transform: uppercase;
@@ -92,7 +87,6 @@
     font-weight: 300;
     line-height: 1.05;
     letter-spacing: -0.02em;
-    color: var(--ink);
     opacity: 0;
     animation: fadeUp 1s ease 0.4s forwards;
   }
@@ -128,7 +122,6 @@
     animation: fadeIn 1.5s ease 1.5s forwards;
   }
 
-  /* Section */
   .section {
     padding: 80px 24px;
     max-width: 800px;
@@ -152,7 +145,6 @@
     background: var(--border);
   }
 
-  /* Product Card */
   .product-card {
     background: var(--warm-white);
     border: 1px solid var(--border);
@@ -173,7 +165,6 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 32px;
     font-style: italic;
-    color: var(--ink);
     margin-bottom: 8px;
   }
 
@@ -205,7 +196,6 @@
 
   .item-name { font-weight: 400; color: var(--ink); }
 
-  /* Info Grid */
   .info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -227,12 +217,7 @@
     margin-bottom: 12px;
   }
 
-  .info-cell-value {
-    font-size: 14px;
-    line-height: 1.9;
-    color: var(--ink-light);
-  }
-
+  .info-cell-value { font-size: 14px; line-height: 1.9; color: var(--ink-light); }
   .info-cell-value strong { font-weight: 400; color: var(--ink); }
 
   .price-badge {
@@ -253,7 +238,6 @@
 
   .price-badge .unit { font-size: 12px; letter-spacing: 0.2em; }
 
-  /* Notes */
   .notes-list {
     list-style: none;
     display: flex;
@@ -282,103 +266,39 @@
     line-height: 1.4;
   }
 
-  /* Form Wrapper */
+  /* Form section */
   .form-wrapper {
     background: var(--warm-white);
     border: 1px solid var(--border);
     padding: 56px 48px;
-    position: relative;
   }
 
   .form-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 36px;
     font-style: italic;
-    color: var(--ink);
     margin-bottom: 8px;
   }
 
   .form-subtitle {
     font-size: 13px;
     color: var(--ink-light);
-    margin-bottom: 48px;
+    margin-bottom: 40px;
     line-height: 1.8;
   }
 
-  /* CTA Block */
-  .cta-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
+  .gform-wrap {
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
   }
 
-  .cta-details {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+  .gform-wrap iframe {
+    display: block;
     width: 100%;
-    max-width: 400px;
-    padding: 28px 32px;
-    background: var(--cream);
-    border: 1px solid var(--border);
+    border: none;
+    background: transparent;
   }
 
-  .cta-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-size: 14px;
-    color: var(--ink-light);
-    line-height: 1.6;
-  }
-
-  .cta-item strong { color: var(--ink); font-weight: 400; }
-
-  .cta-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--accent-light);
-    flex-shrink: 0;
-  }
-
-  .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 16px;
-    padding: 20px 48px;
-    background: var(--ink);
-    color: var(--cream);
-    text-decoration: none;
-    font-family: 'Noto Serif TC', serif;
-    font-weight: 300;
-    font-size: 13px;
-    letter-spacing: 0.4em;
-    transition: background 0.3s ease, transform 0.2s ease;
-  }
-
-  .cta-btn:hover {
-    background: var(--accent);
-    transform: translateY(-2px);
-  }
-
-  .cta-arrow {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-style: italic;
-    transition: transform 0.3s ease;
-  }
-
-  .cta-btn:hover .cta-arrow { transform: translateX(4px); }
-
-  .cta-note {
-    font-size: 12px;
-    color: var(--accent-light);
-    letter-spacing: 0.1em;
-    text-align: center;
-  }
-
-  /* Footer */
   footer {
     text-align: center;
     padding: 48px 24px 64px;
@@ -392,7 +312,6 @@
 
   footer a { color: var(--accent); text-decoration: none; }
 
-  /* Animations */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -403,21 +322,17 @@
     to { opacity: 1; }
   }
 
-  /* Responsive */
   @media (max-width: 600px) {
     .info-grid { grid-template-columns: 1fr; }
     .product-card, .form-wrapper { padding: 32px 24px; }
-    .cta-btn { padding: 18px 32px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Hero -->
 <section class="hero">
   <div class="hero-ornament left">P</div>
   <div class="hero-ornament right">U</div>
-
   <p class="label">Pre-order · 早鳥預購</p>
   <h1 class="title"><em>Pages</em> of Us</h1>
   <p class="subtitle">
@@ -429,7 +344,6 @@
   <p class="scroll-hint">— 向下，開啟你們的專屬篇章 —</p>
 </section>
 
-<!-- Content -->
 <div class="section">
 
   <p class="section-label">關於這套組合</p>
@@ -438,22 +352,10 @@
     <h2 class="product-title">Pages of Us</h2>
     <p class="product-size">A5 · 6孔活頁設計</p>
     <ul class="product-items">
-      <li>
-        <span class="item-dot"></span>
-        <span><span class="item-name">主題頁（4張）</span><br>四種故事的起點，引導你與好友開啟特定的對話章節。</span>
-      </li>
-      <li>
-        <span class="item-dot"></span>
-        <span><span class="item-name">內容頁（4張）</span><br>靈活的留白空間，容納日常碎碎念或深度心情。</span>
-      </li>
-      <li>
-        <span class="item-dot"></span>
-        <span><span class="item-name">照片收納夾層（1個）</span><br>給快門瞬間一個家，收藏實體照片與回憶碎片。</span>
-      </li>
-      <li>
-        <span class="item-dot"></span>
-        <span><span class="item-name">透明書夾（1個）</span></span>
-      </li>
+      <li><span class="item-dot"></span><span><span class="item-name">主題頁（4張）</span><br>四種故事的起點，引導你與好友開啟特定的對話章節。</span></li>
+      <li><span class="item-dot"></span><span><span class="item-name">內容頁（4張）</span><br>靈活的留白空間，容納日常碎碎念或深度心情。</span></li>
+      <li><span class="item-dot"></span><span><span class="item-name">照片收納夾層（1個）</span><br>給快門瞬間一個家，收藏實體照片與回憶碎片。</span></li>
+      <li><span class="item-dot"></span><span><span class="item-name">透明書夾（1個）</span></span></li>
     </ul>
   </div>
 
@@ -466,10 +368,7 @@
     </div>
     <div class="info-cell">
       <p class="info-cell-label">早鳥優惠價</p>
-      <div class="price-badge">
-        <span class="amount">299</span>
-        <span class="unit">元</span>
-      </div>
+      <div class="price-badge"><span class="amount">299</span><span class="unit">元</span></div>
       <p class="info-cell-value" style="margin-top:10px; font-size:12px;">與你友情久久 🤍</p>
     </div>
     <div class="info-cell" style="grid-column: 1 / -1;">
@@ -477,7 +376,7 @@
       <p class="info-cell-value">
         <strong>松菸畢製現場領貨</strong><br>
         📍 松山文創園區 北向製菸工廠<br>
-        <a href="https://maps.app.goo.gl/toBDhswVEbK9oRpC9" target="_blank" style="color: var(--accent); font-size:12px; letter-spacing:0.1em;">→ 查看交通資訊</a>
+        <a href="https://maps.app.goo.gl/toBDhswVEbK9oRpC9" target="_blank" style="color: var(--accent); font-size:12px;">→ 查看交通資訊</a>
       </p>
     </div>
   </div>
@@ -489,38 +388,16 @@
     <li><span class="note-num">3</span><span>任何問題歡迎私訊 <strong>「和你和你 (HandinHand)」</strong> 官方帳號。</span></li>
   </ul>
 
-  <!-- CTA -->
   <div class="form-wrapper">
     <h2 class="form-title">填寫預購資訊</h2>
-    <p class="form-subtitle">準備好開啟你們的專屬篇章了嗎？✍️<br>點擊下方按鈕，前往填寫預購表單。</p>
-
-    <div class="cta-block">
-      <div class="cta-details">
-        <div class="cta-item">
-          <span class="cta-dot"></span>
-          <span>早鳥優惠價 <strong>NT$299</strong></span>
-        </div>
-        <div class="cta-item">
-          <span class="cta-dot"></span>
-          <span>預購截止 <strong>6 月 2 日</strong></span>
-        </div>
-        <div class="cta-item">
-          <span class="cta-dot"></span>
-          <span>松菸畢製現場取貨</span>
-        </div>
-      </div>
-
-      <a
-        href="https://docs.google.com/forms/d/e/1FAIpQLSfTDQn5NUPP2Jo6wAZzlKQs9lQxc25Dv-HdTw5a0t8sRPOT2w/viewform"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="cta-btn"
-      >
-        <span>前往填寫預購表單</span>
-        <span class="cta-arrow">→</span>
-      </a>
-
-      <p class="cta-note">點擊後將開啟新頁面，填寫完成即完成預購登記 🤍</p>
+    <p class="form-subtitle">準備好開啟你們的專屬篇章了嗎？✍️<br>請完整填寫以下欄位，我們會為你保留這份回憶。</p>
+    <div class="gform-wrap">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfTDQn5NUPP2Jo6wAZzlKQs9lQxc25Dv-HdTw5a0t8sRPOT2w/viewform?embedded=true"
+        height="1600"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0">載入中…</iframe>
     </div>
   </div>
 
