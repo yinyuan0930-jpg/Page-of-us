@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pages of Us — 預購表單</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+TC:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F2EA;
+    --warm-white: #FDFAF5;
+    --ink: #2C2416;
+    --ink-light: #5C4F3A;
+    --accent: #8B6F47;
+    --accent-light: #C4A882;
+    --blush: #E8D5C0;
+    --sage: #9CAF8A;
+    --border: #D4C4A8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 20% 80%, rgba(196,168,130,0.15) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 80% 20%, rgba(156,175,138,0.1) 0%, transparent 60%);
+  }
+
+  .hero-ornament {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--accent-light);
+    opacity: 0.15;
+    font-size: clamp(80px, 15vw, 180px);
+    user-select: none;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+  .hero-ornament.left { left: -2vw; top: 10%; }
+  .hero-ornament.right { right: -2vw; bottom: 10%; }
+
+  .label {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.2s forwards;
+  }
+
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 10vw, 120px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    opacity: 0;
+    animation: fadeUp 1s ease 0.4s forwards;
+  }
+
+  .title em { font-style: italic; color: var(--accent); }
+
+  .subtitle {
+    margin-top: 32px;
+    font-size: clamp(14px, 2vw, 17px);
+    line-height: 2.2;
+    color: var(--ink-light);
+    max-width: 520px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+
+  .hero-divider {
+    margin: 48px auto;
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--accent-light), transparent);
+    opacity: 0;
+    animation: fadeIn 1s ease 1s forwards;
+  }
+
+  .scroll-hint {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--accent-light);
+    letter-spacing: 0.2em;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 1.5s forwards;
+  }
+
+  /* Section */
+  .section {
+    padding: 80px 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Product Card */
+  .product-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    padding: 48px;
+    position: relative;
+    margin-bottom: 32px;
+  }
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px;
+    right: -8px; bottom: -8px;
+    border: 1px solid var(--blush);
+    z-index: -1;
+  }
+
+  .product-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .product-size {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--accent-light);
+    margin-bottom: 32px;
+  }
+
+  .product-items { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+
+  .product-items li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink-light);
+  }
+
+  .item-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  .item-name { font-weight: 400; color: var(--ink); }
+
+  /* Info Grid */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 48px;
+  }
+
+  .info-cell {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    padding: 32px;
+  }
+
+  .info-cell-label {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .info-cell-value {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--ink-light);
+  }
+
+  .info-cell-value strong { font-weight: 400; color: var(--ink); }
+
+  .price-badge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 8px 20px;
+    margin-top: 12px;
+  }
+
+  .price-badge .amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-style: italic;
+  }
+
+  .price-badge .unit { font-size: 12px; letter-spacing: 0.2em; }
+
+  /* Notes */
+  .notes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 64px;
+    padding: 32px;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+  }
+
+  .notes-list li {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--ink-light);
+  }
+
+  .note-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--accent-light);
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+
+  /* Form Wrapper */
+  .form-wrapper {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    position: relative;
+  }
+
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .form-subtitle {
+    font-size: 13px;
+    color: var(--ink-light);
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+
+  /* CTA Block */
+  .cta-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .cta-details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 400px;
+    padding: 28px 32px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+  }
+
+  .cta-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.6;
+  }
+
+  .cta-item strong { color: var(--ink); font-weight: 400; }
+
+  .cta-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    flex-shrink: 0;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 48px;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .cta-arrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-btn:hover .cta-arrow { transform: translateX(4px); }
+
+  .cta-note {
+    font-size: 12px;
+    color: var(--accent-light);
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 48px 24px 64px;
+    font-size: 12px;
+    color: var(--accent-light);
+    letter-spacing: 0.2em;
+    line-height: 2.2;
+    border-top: 1px solid var(--border);
+    margin-top: 80px;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .product-card, .form-wrapper { padding: 32px 24px; }
+    .cta-btn { padding: 18px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-ornament left">P</div>
+  <div class="hero-ornament right">U</div>
+
+  <p class="label">Pre-order · 早鳥預購</p>
+  <h1 class="title"><em>Pages</em> of Us</h1>
+  <p class="subtitle">
+    在這裡，你可以和朋友一起書寫、交換、紀錄那些日常的小片段。<br>
+    回憶不可避免地會慢慢模糊，<br>
+    但當把它寫下，它就能被輕輕保存。
+  </p>
+  <div class="hero-divider"></div>
+  <p class="scroll-hint">— 向下，開啟你們的專屬篇章 —</p>
+</section>
+
+<!-- Content -->
+<div class="section">
+
+  <p class="section-label">關於這套組合</p>
+
+  <div class="product-card">
+    <h2 class="product-title">Pages of Us</h2>
+    <p class="product-size">A5 · 6孔活頁設計</p>
+    <ul class="product-items">
+      <li>
+        <span class="item-dot"></span>
+        <span><span class="item-name">主題頁（4張）</span><br>四種故事的起點，引導你與好友開啟特定的對話章節。</span>
+      </li>
+      <li>
+        <span class="item-dot"></span>
+        <span><span class="item-name">內容頁（4張）</span><br>靈活的留白空間，容納日常碎碎念或深度心情。</span>
+      </li>
+      <li>
+        <span class="item-dot"></span>
+        <span><span class="item-name">照片收納夾層（1個）</span><br>給快門瞬間一個家，收藏實體照片與回憶碎片。</span>
+      </li>
+      <li>
+        <span class="item-dot"></span>
+        <span><span class="item-name">透明書夾（1個）</span></span>
+      </li>
+    </ul>
+  </div>
+
+  <p class="section-label">預購資訊</p>
+
+  <div class="info-grid">
+    <div class="info-cell">
+      <p class="info-cell-label">預購時間</p>
+      <p class="info-cell-value"><strong>即日起至 6 月 2 日</strong>止</p>
+    </div>
+    <div class="info-cell">
+      <p class="info-cell-label">早鳥優惠價</p>
+      <div class="price-badge">
+        <span class="amount">299</span>
+        <span class="unit">元</span>
+      </div>
+      <p class="info-cell-value" style="margin-top:10px; font-size:12px;">與你友情久久 🤍</p>
+    </div>
+    <div class="info-cell" style="grid-column: 1 / -1;">
+      <p class="info-cell-label">取貨地點</p>
+      <p class="info-cell-value">
+        <strong>松菸畢製現場領貨</strong><br>
+        📍 松山文創園區 北向製菸工廠<br>
+        <a href="https://maps.app.goo.gl/toBDhswVEbK9oRpC9" target="_blank" style="color: var(--accent); font-size:12px; letter-spacing:0.1em;">→ 查看交通資訊</a>
+      </p>
+    </div>
+  </div>
+
+  <p class="section-label">注意事項</p>
+  <ul class="notes-list">
+    <li><span class="note-num">1</span><span>請確認填寫正確的收件資訊，確保回憶能準確送達。</span></li>
+    <li><span class="note-num">2</span><span>匯款完成後，請於表單內填寫帳號末五碼以利對帳。</span></li>
+    <li><span class="note-num">3</span><span>任何問題歡迎私訊 <strong>「和你和你 (HandinHand)」</strong> 官方帳號。</span></li>
+  </ul>
+
+  <!-- CTA -->
+  <div class="form-wrapper">
+    <h2 class="form-title">填寫預購資訊</h2>
+    <p class="form-subtitle">準備好開啟你們的專屬篇章了嗎？✍️<br>點擊下方按鈕，前往填寫預購表單。</p>
+
+    <div class="cta-block">
+      <div class="cta-details">
+        <div class="cta-item">
+          <span class="cta-dot"></span>
+          <span>早鳥優惠價 <strong>NT$299</strong></span>
+        </div>
+        <div class="cta-item">
+          <span class="cta-dot"></span>
+          <span>預購截止 <strong>6 月 2 日</strong></span>
+        </div>
+        <div class="cta-item">
+          <span class="cta-dot"></span>
+          <span>松菸畢製現場取貨</span>
+        </div>
+      </div>
+
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSfTDQn5NUPP2Jo6wAZzlKQs9lQxc25Dv-HdTw5a0t8sRPOT2w/viewform"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta-btn"
+      >
+        <span>前往填寫預購表單</span>
+        <span class="cta-arrow">→</span>
+      </a>
+
+      <p class="cta-note">點擊後將開啟新頁面，填寫完成即完成預購登記 🤍</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© Pages of Us · 和你和你 HandinHand</p>
+  <p style="margin-top:8px;">最好的紀念，是接住那些與重要的人並肩走過的瞬間。</p>
+</footer>
+
+</body>
+</html>
